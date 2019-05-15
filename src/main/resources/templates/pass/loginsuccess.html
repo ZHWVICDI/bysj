@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
+</head>
+<body>
+
+<div class="container">
+    <h5>你已经成功登陆! <a th:href="@{/toIndex}">点击此处返回首页</a></h5>
+</div>
+
+<script src="./bootstrap-dist/js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+<script src="./bootstrap-dist/js/bootstrap.js" th:src="@{bootstrap-dist/js/bootstrap.js}"></script>
+</body>
+</html>

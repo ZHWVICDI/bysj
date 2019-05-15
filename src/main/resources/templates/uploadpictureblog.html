@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>BusinessNews - Registration</title>
+
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <!--!&#45;&#45;[if lt IE 9]>-->
+    <script type="text/javascript" src="layout/plugins/html5.js" th:src="@{layout/plugins/html5.js}"></script>
+    <!--<![endif]&ndash;&gt;-->
+
+    <link rel="stylesheet" href="layout/style.css" type="text/css" th:href="@{layout/style.css}"/>
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic" rel="stylesheet" type="text/css"/>
+
+
+    <!-- jQuery tools start -->
+    <!--<script type="text/javascript" src="layout/plugins/tools/jquery.tools.min.js" th:src="@{layout/plugins/tools/jquery.tools.min.js}"></script>-->
+    <!-- jQuery tools end -->
+
+    <!-- Calendar start -->
+    <link rel="stylesheet" href="layout/plugins/calendar/calendar.css" type="text/css"
+          th:href="@{layout/plugins/calendar/calendar.css}"/>
+    <!--<script type="text/javascript" src="layout/plugins/calendar/calendar.js" th:src="@{layout/plugins/calendar/calendar.js}"></script>-->
+    <!-- Calendar end -->
+
+    <!-- ScrollTo start -->
+    <!--<script type="text/javascript" src="layout/plugins/scrollto/jquery.scroll.to.min.js" th:src="@{layout/plugins/scrollto/jquery.scroll.to.min.js}"></script>-->
+    <!-- ScrollTo end -->
+
+    <!-- MediaElements start -->
+    <link rel="stylesheet" href="layout/plugins/video-audio/mediaelementplayer.css"
+          th:href="@{layout/plugins/video-audio/mediaelementplayer.css}"/>
+    <!--<script src="layout/plugins/video-audio/mediaelement-and-player.js" th:src="@{layout/plugins/video-audio/mediaelement-and-player.js}"></script>-->
+    <!-- MediaElements end -->
+
+    <!-- FlexSlider start -->
+    <link rel="stylesheet" href="layout/plugins/flexslider/flexslider.css" type="text/css"
+          th:href="@{layout/plugins/flexslider/flexslider.css}"/>
+    <!--<script type="text/javascript" src="layout/plugins/flexslider/jquery.flexslider-min.js" th:src="@{layout/plugins/flexslider/jquery.flexslider-min.js}"></script>-->
+    <!-- FlexSlider end -->
+
+    <!-- iButtons start -->
+    <link rel="stylesheet" href="layout/plugins/ibuttons/css/jquery.ibutton.css" type="text/css"
+          th:href="@{layout/plugins/ibuttons/css/jquery.ibutton.css}"/>
+    <!--<script type="text/javascript" src="layout/plugins/ibuttons/lib/jquery.ibutton.min.js" th:src="@{layout/plugins/ibuttons/lib/jquery.ibutton.min.js}"></script>-->
+    <!-- iButtons end -->
+
+    <!-- jQuery Form Plugin start -->
+    <!--<script type="text/javascript" src="layout/plugins/ajaxform/jquery.form.js" th:src="@{layout/plugins/ajaxform/jquery.form.js}"></script>-->
+    <!-- jQuery Form Plugin end -->
+
+    <!-- <script type="text/javascript" src="layout/js/main.js" th:src="@{layout/js/main.js}"></script>-->
+
+
+    <!--quill Include stylesheet -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- bootstrap的css文件部分 -->
+    <link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
+
+    <!-- 多文件上传插件的css文件 -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="./fileupload/css/style.css" th:href="@{fileupload/css/style.css}">
+    <link rel="stylesheet" href="./fileupload/css/ssi-uploader.css" th:href="@{fileupload/css/ssi-uploader.css}"/>
+    <link rel="stylesheet" href="./fileupload/css/ssi-uploader.css" th:href="@{fileupload/css/fileinput.css}"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<div class="wrapper sticky_footer">
+    <!-- HEADER BEGIN -->
+    <header>
+        <div id="header">
+            <section class="top">
+                <div class="inner">
+                    <div class="fl">
+                        <div class="block_top_menu">
+                            <ul>
+                                <li class="current"><a href="index.html">Home</a></li>
+                                <li><a href="#">Site Map</a></li>
+                                <li><a href="typography.html">Typography</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fr">
+                        <div class="block_top_menu">
+                            <ul>
+                                <li class="current"><a href="#login" class="open_popup">Login</a></li>
+                                <li><a href="registration.html">Registration</a></li>
+                                <li><a href="#">Subscribe</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="block_social_top">
+                            <ul>
+                                <li><a href="#" class="fb">Facebook</a></li>
+                                <li><a href="#" class="tw">Twitter</a></li>
+                                <li><a href="#" class="rss">RSS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="clearboth"></div>
+                </div>
+            </section>
+        </div>
+    </header>
+    <!-- HEADER END -->
+
+    <!-- CONTENT BEGIN -->
+    <div id="content" class="">
+        <div class="inner">
+            <div class="general_content">
+                <div class="main_content">
+                    <div class="block_breadcrumbs">
+                        <div class="text"><p>你在:</p></div>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">发表博客</a></li>
+                            <li>发表图文博客</li>
+                        </ul>
+                    </div>
+
+                    <div class="block_registration container">
+                        <!--  <form >
+                               <div class="form-group">
+                                 <label for="blogVideo">为本篇博客上传一些相关图片</label>
+                                 <input type="file" class="form-control" id="blogVideo">
+                                 <p class="help-block">Example block-level help text here.</p>
+                               </div>
+                         <form/> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="ssi-upload3">为本篇博客上传一些相关图片</label>
+                                <input  type="file" multiple id="ssi-upload3"/>
+                            </div>
+                        </div>
+
+                        <form class="blogbodyform" th:action="@{/blogbodyUpload}" method="post">
+                            <label class="result" th:text="${blogbodyresult}" style="color: #23ccfe" th:if="${blogbodyresult=='图文博客内容上传成功'}"></label>
+                            <label class="result" th:text="${blogbodyresult}" style="color: red" th:unless="${blogbodyresult=='图文博客内容上传成功'}"></label>
+                            <input type="hidden" name="type" value="0"/>
+                            <div class="form-group">
+                                <label for="blogTitle">博客的标题</label>
+                                <input type="text" class="form-control" id="blogTitle" placeholder="博客的标题" name="blogTitle">
+                            </div>
+                            <div class="form-group">
+                                <label>博客类别</label>
+                                <select class="form-control" name="blogCategory" >
+                                    <option th:each="category:${categories}" th:value="${category.id}"><div th:text="${category.categoryName}"></div></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="blogInfo">博客的简介</label>
+                                <textarea class="form-control" rows="3" id="blogInfo" placeholder="博客的简介" name="blogInfo"></textarea>
+                            </div>
+                            <!--一个富文本编辑器 这个用来发表博客相关的  -->
+                                <label>编辑博客内容</label>
+                                <!-- Create the editor container -->
+                                <div id="editor">
+                                    <p>Hello World!</p>
+                                    <p>Some initial <strong>bold</strong> text</p>
+                                    <p><br></p>
+                                </div>
+                                <textarea name="blogContent" style="display: none"></textarea>
+                                <button type="submit" class="btn btn-default">发表博客</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <div class="line_3" style="margin:42px 0px 0px;"></div>
+
+        </div>
+
+        <div class="clearboth"></div>
+    </div>
+</div>
+</div>
+<!-- CONTENT END -->
+
+<!-- FOOTER BEGIN -->
+<!-- FOOTER END -->
+</div>
+
+<!-- POPUP BEGIN -->
+<div id="overlay"></div>
+<div id="login" class="block_popup">
+    <div class="popup">
+        <a href="#" class="close">Close</a>
+
+        <div class="content">
+            <div class="title"><p>Enter the site</p></div>
+
+            <div class="form">
+                <form action="#"/>
+                <div class="column">
+                    <p class="label">Login</p>
+                    <div class="field"><input type="text"/></div>
+                </div>
+
+                <div class="column">
+                    <p class="label">Password</p>
+                    <div class="field"><input type="password"/></div>
+                </div>
+
+                <div class="column_2">
+                    <div class="remember">
+                        <div class="checkbox"><input type="checkbox"/></div>
+                        <div class="remember_label"><p>Remember me</p></div>
+                    </div>
+                </div>
+
+                <div class="column_2">
+                    <p class="forgot_pass"><a href="#">Forgot password?</a></p>
+                </div>
+
+                <div class="column button">
+                    <a href="#" class="enter"><span>Login</span></a>
+                </div>
+
+                <div class="clearboth"></div>
+                </form>
+            </div>
+
+            <div class="subtitle"><p>SIGN IN AS A USER</p></div>
+
+            <div class="fb_button"><a href="#"><img src="images/button_fb_login.png" alt=""/></a></div>
+            <div class="text"><p>Use your account on the social network Facebook, to create a profile on
+                BusinessPress</p></div>
+        </div>
+    </div>
+</div>
+<!-- POPUP END -->
+
+
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!-- bootstrap js 部分 包括jquery -->
+<script src="./bootstrap-dist/js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+<script src="./bootstrap-dist/js/bootstrap.js" th:src="@{bootstrap-dist/js/bootstrap.js}"></script>
+<!-- validation框架 的包-->
+<script th:src="@{validation/jquery.validate.js}"></script>
+<script th:src="@{validation/messages_zh.js}"></script>
+
+<!-- uploader插件的js -->
+<!--<script src="./fileupload/js/jquery-2.1.1.min.js" type="text/javascript" th:src="@{./fileupload/js/jquery-2.1.1.min.js}"></script>-->
+<script src="./fileupload/js/ssi-uploader.js" th:src="@{./fileupload/js/ssi-uploader.js}"></script>
+
+<!-- Initialize Quill editor -->
+<!-- Initialize Quill editor -->
+<script>
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+
+        [{'header': 1}, {'header': 2}],               // custom button values
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+        [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
+        [{'direction': 'rtl'}],                         // text direction
+
+        [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+        [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+        [{'font': []}],
+        [{'align': []}],
+
+        ['clean']                                         // remove formatting button
+    ];
+
+    var quill = new Quill('#editor', {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        theme: 'snow'
+    });
+    $(".blogbodyform").submit(function () {
+        //获取文本编辑器的内容
+        var content = quill.container.firstChild.innerHTML;
+        console.log(content);
+        $("[name=blogContent]").html(content);
+        return true;
+    })
+    $('#ssi-upload3').ssi_uploader({
+        url: '#',
+        maxFileSize: 2,
+        dropZone: false,
+        allowed: ['jpg', 'gif', 'txt', 'png', 'pdf']
+    });
+</script>
+</body>
+
+</html>

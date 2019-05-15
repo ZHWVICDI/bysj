@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>BusinessNews - Registration</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="width=device-width" /> -->
+
+
+
+ <!--   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!-- bootstarp的元数据部分 -->
+<!--<meta charset="utf-8" />--><!--
+<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="layout/plugins/html5.js" th:src="@{layout/plugins/html5.js}"></script>
+<![endif]&ndash;&gt;-->
+
+<link rel="stylesheet" href="layout/style.css" type="text/css" th:href="@{layout/style.css}" /><!--
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic" rel="stylesheet" type="text/css" />-->
+
+
+
+
+<!-- jQuery tools start -->
+<!--<script type="text/javascript" src="layout/plugins/tools/jquery.tools.min.js" th:src="@{layout/plugins/tools/jquery.tools.min.js}"></script>-->
+<!-- jQuery tools end -->
+
+<!-- Calendar start -->
+<link rel="stylesheet" href="layout/plugins/calendar/calendar.css" type="text/css" th:href="@{layout/plugins/calendar/calendar.css}"/>
+<!--<script type="text/javascript" src="layout/plugins/calendar/calendar.js" th:src="@{layout/plugins/calendar/calendar.js}"></script>-->
+<!-- Calendar end -->
+
+<!-- ScrollTo start -->
+<!--<script type="text/javascript" src="layout/plugins/scrollto/jquery.scroll.to.min.js" th:src="@{layout/plugins/scrollto/jquery.scroll.to.min.js}"></script>-->
+<!-- ScrollTo end -->
+
+<!-- MediaElements start -->
+<link rel="stylesheet" href="layout/plugins/video-audio/mediaelementplayer.css" th:href="@{layout/plugins/video-audio/mediaelementplayer.css}"/>
+<!--<script src="layout/plugins/video-audio/mediaelement-and-player.js" th:src="@{layout/plugins/video-audio/mediaelement-and-player.js}"></script>-->
+<!-- MediaElements end -->
+
+<!-- FlexSlider start -->
+<link rel="stylesheet" href="layout/plugins/flexslider/flexslider.css" type="text/css" th:href="@{layout/plugins/flexslider/flexslider.css}"/>
+<!--<script type="text/javascript" src="layout/plugins/flexslider/jquery.flexslider-min.js" th:src="@{layout/plugins/flexslider/jquery.flexslider-min.js}"></script>-->
+<!-- FlexSlider end -->
+
+<!-- iButtons start -->
+<link rel="stylesheet" href="layout/plugins/ibuttons/css/jquery.ibutton.css" type="text/css" th:href="@{layout/plugins/ibuttons/css/jquery.ibutton.css}"/>
+<!--<script type="text/javascript" src="layout/plugins/ibuttons/lib/jquery.ibutton.min.js" th:src="@{layout/plugins/ibuttons/lib/jquery.ibutton.min.js}"></script>-->
+<!-- iButtons end -->
+
+<!-- jQuery Form Plugin start -->
+<!--<script type="text/javascript" src="layout/plugins/ajaxform/jquery.form.js" th:src="@{layout/plugins/ajaxform/jquery.form.js}"></script>-->
+<!-- jQuery Form Plugin end -->
+
+<!--<script type="text/javascript" src="layout/js/main.js" th:src="@{layout/js/main.js}"></script>-->
+
+
+
+
+    <!-- bootstrap的css文件部分 -->
+    <link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
+
+
+    <style>
+        form input.error{
+            color:#F00;
+            border: 1px solid #CE7979;
+            background:#FFF7FA;
+        }
+        form label.error{
+            color:#F00;
+        }
+    </style>
+
+
+</head>
+<body>
+	<div class="wrapper sticky_footer">
+
+        <div th:replace="common/header :: myheader(user=${session.userInfo?:null})" ></div>
+
+        <!-- CONTENT BEGIN -->
+        <div id="content" class="">
+        	<div class="inner">
+            	<div class="general_content">
+                	<div class="main_content">
+                    	<div class="block_breadcrumbs">
+                        	<div class="text"><p>当前位置:</p></div>
+                            
+                            <ul>
+                            	<li><a href="index.html">Home</a></li>
+                                <li>注册</li>
+                            </ul>
+                        </div>
+                        <div class="separator" style="height:28px;"></div>
+                        
+                        <p class="general_title"><span>Join The Conversation</span></p>
+                        <div class="separator" style="height:39px;"></div>
+
+                        <!-- 表单位置 -->
+                        <div class="container" style="width:600px;">
+                            <form class="form-horizontal" action="/register" method="post" id="registerform">
+                                    <div class="form-group " >
+                                        <label class="control-label col-sm-offset-4" for="exampleInputUsername" style="color: red" th:text="${result}"></label>
+                                    </div>
+                                    <div class="form-group " >
+                                        <label class="col-sm-2 control-label" for="exampleInputUsername">用户名</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="exampleInputUsername" placeholder="用户名" name="username" th:value="${userinfo?.username}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="col-sm-2 control-label"  for="exampleInputPassword1">密码</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="输入密码" name="password" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="col-sm-2 control-label"  for="checkedInputPassword1">确认密码</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="checkedInputPassword1" placeholder="确认密码" name="repassword">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"  for="exampleInputEmail1">邮箱</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" th:value="${userinfo?.email}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                            <label class="radio-inline col-sm-offset-5 ">
+                                                <input type="radio" name="gender" id="inlineRadio2" value="male" > 男
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="gender" id="inlineRadio3" value="female"> 女
+                                            </label>
+                                    </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-5">
+                                        <button type="submit" class="btn btn-default">确认注册</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="line_3" style="margin:42px 0px 0px;"></div>
+                        
+                    </div>
+                    
+                	<div class="clearboth"></div>
+                </div>
+            </div>
+        </div>
+    	<!-- CONTENT END -->
+        
+        <!-- FOOTER BEGIN -->
+        <div th:replace="common/footer::myfooter"></div>
+        <!-- FOOTER END -->
+    </div>
+
+    <!-- POPUP BEGIN -->
+    <div id="overlay"></div>
+    <div th:replace="common/header::loginmodal"></div>
+    <!-- POPUP END -->
+
+    <!-- bootstrap js 部分 包括jquery -->
+    <script src="./bootstrap-dist/js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+    <script src="./bootstrap-dist/js/bootstrap.js" th:src="@{bootstrap-dist/js/bootstrap.js}"></script>
+    <!-- validation框架 的包-->
+    <script th:src="@{validation/jquery.validate.js}"></script>
+    <script th:src="@{validation/messages_zh.js}"></script>
+
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            submitHandler: function() {
+                $("#registerform").submit();
+            }
+        });
+        $().ready(function() {
+// 在键盘按下并释放及提交后验证提交表单
+            $("#registerform").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        remote:{
+                            url:"/userIsExist",
+                            type:"get",
+                            dataType:"json",
+                            data:{
+                                     username:function(){
+                                     return $("#exampleInputUsername").val();
+                                }
+                            }
+                        }
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    repassword:{
+                        required: true,
+                        equalTo: "#exampleInputPassword1"
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    username:{
+                        required: "请输入用户名",
+                        remote:"用户名已存在"
+                    },
+                    password: {
+                        required: "请输入密码",
+                        minlength: "密码长度不能小于5位"
+                    },
+                    repassword:{
+                        required: "请再次输入密码",
+                        equalTo: "两次密码输入不一致"
+                    },
+                    email: {
+                        email: "请输入一个正确的邮箱"
+                    }
+                }
+            })
+        });
+        $(function(){
+            //loginmodal
+        });
+    </script>
+</body>
+
+</html>

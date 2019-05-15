@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>视频播客详情页</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="layout/plugins/html5.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="layout/style.css" type="text/css" /><!--
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic" rel="stylesheet" type="text/css" />-->
+
+<!--<script type="text/javascript" src="layout/js/jquery.js"></script>-->
+
+<!-- PrettyPhoto start
+<link rel="stylesheet" href="layout/plugins/prettyphoto/css/prettyPhoto.css" type="text/css" />
+<script type="text/javascript" src="layout/plugins/prettyphoto/jquery.prettyPhoto.js"></script>
+ PrettyPhoto end -->
+
+<!-- jQuery tools start -->
+<!--<script type="text/javascript" src="layout/plugins/tools/jquery.tools.min.js"></script>-->
+<!-- jQuery tools end -->
+
+<!-- Calendar start -->
+<!--<link rel="stylesheet" href="layout/plugins/calendar/calendar.css" type="text/css" />
+<script type="text/javascript" src="layout/plugins/calendar/calendar.js"></script>-->
+<!-- Calendar end -->
+
+<!-- ScrollTo start -->
+<!--<script type="text/javascript" src="layout/plugins/scrollto/jquery.scroll.to.min.js"></script>-->
+<!-- ScrollTo end -->
+
+<!-- MediaElements start -->
+<!--<link rel="stylesheet" href="layout/plugins/video-audio/mediaelementplayer.css" />-->
+<!--<script src="layout/plugins/video-audio/mediaelement-and-player.js"></script>-->
+<!-- MediaElements end -->
+
+<!-- FlexSlider start -->
+<!--<link rel="stylesheet" href="layout/plugins/flexslider/flexslider.css" type="text/css" />
+<script type="text/javascript" src="layout/plugins/flexslider/jquery.flexslider-min.js"></script>-->
+<!-- FlexSlider end -->
+
+<!-- iButtons start -->
+<link rel="stylesheet" href="layout/plugins/ibuttons/css/jquery.ibutton.css" type="text/css" />
+<!--<script type="text/javascript" src="layout/plugins/ibuttons/lib/jquery.ibutton.min.js"></script>-->
+<!-- iButtons end -->
+
+<!-- jQuery Form Plugin start -->
+<!--<script type="text/javascript" src="layout/plugins/ajaxform/jquery.form.js"></script>-->
+<!-- jQuery Form Plugin end -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<!--video css 的样式-->
+<link href="./video-js.min.css" rel="stylesheet" th:href="@{videojs/video-js.min.css}">
+<body>
+	<div class="wrapper sticky_footer">
+    	<!-- HEADER BEGIN -->
+        <div th:replace="common/header :: myheader(user=${session.userInfo?:null})" ></div>
+    	<!-- HEADER END -->
+
+        <!-- CONTENT BEGIN -->
+        <div id="content" class="right_sidebar">
+        	<div class="inner">
+            	<div class="general_content">
+                	<div class="main_content">
+                    	<div class="block_breadcrumbs">
+                        	<div class="text"><p>当前位置</p></div>
+
+                            <ul>
+                            	<li><a href="index.html">首页</a></li>
+                                <li><a href="blog.html">视频播客</a></li>
+                                <!--<li th:>Blog Name</li>-->
+                            </ul>
+                        </div>
+                        <div class="separator" style="height:30px;"></div>
+
+                        <article class="block_single_post">
+                            <!--这里使用videojs来加载视频-->
+                            <div class="block_video" style="width:612px;height:343px;">
+                              <!--  <iframe src="http://player.vimeo.com/video/10788352" width="612" height="343" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>-->
+                                <video id="blogvideo" class="video-js vjs-default-skin" controls preload="none"  th:poster="${'http://localhost:8888/pic-cutted/'+curvideoblog.coverUrl}">
+                                    <source src="http://localhost:8888/20190509231046655test4.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                          	<p class="title"><a href="#" th:text="${curvideoblog.blogTitle}">Words which don't look even slightly.</a></p>
+                            <p class="subtitle" th:text="${curvideoblog.blogInfo}">Many variations of passages of available, but the majority have suffered alteration in some form. Humour, or randomised words which don't look even slightly believable.</p>
+
+                            <div class="info">
+                                <div class="date"><p th:text="${curvideoblog.createDate}">15 July, 2012</p></div>
+                                <div class="author"><p>创作: <a href="#" th:text="${curVideoPoster.username}">John Doe</a></p></div>
+
+                            	<div class="r_part">
+                                	<div class="category"><p>分类: <a href="#" th:text="${curBlogCategory.categoryName}" th:if="${curBlogCategory!=null}">BUSINESS</a><a th:unless="${curBlogCategory!=null}" th:text="未分类"></p></div>
+                                    <a href="#" class="views" th:text="${curvideoblog.starNum}">650</a>
+                                    <a href="#" class="comments" th:text="${curvideoblog.commentNum}">25</a>
+                                </div>
+                            </div>
+
+                            <div class="content" th:utext="${curvideoblog.blogContent}">
+                            	<p>There are many variations of passages of available, but the majority have suffered alteration in some form, by injected humour, or <b>randomised words which</b> don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the generators on the Internet tend to repeat predefined <a href="#" class="lnk_blue"><b>chunks as necessary</b></a>, making this the first true generator on the Internet. It uses a dictionary of over words, combined with a handful of model sentence structures, to generate which looks reasonable.</p>
+                                <blockquote class="full">Going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. established fact that a reader will be distracted by the readable content.</blockquote>
+                                <p>Available, but the majority have suffered alteration.By injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. Established fact that a reader will be <a href="#" class="lnk_blue"><b>distracted by the readable</b></a> content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less.</p>
+
+                                <div class="separator" style="height:4px;"></div>
+                                <h6>Post image aligned to the left</h6>
+                                <div class="separator" style="height:4px;"></div>
+                                <a href="#" class="pic w_frame alignleft"><img src="images/pic_blog_post_2.jpg" alt="" /></a>
+                                <p>There are many variations of passages of available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage <b>need to be sure there isn't anything</b> embarrassing.</p>
+                                <p>Hidden in the middle of text. All the generators on the Internet tend to repeat predefined <a href="#" class="lnk_blue"><b>chunks as necessary</b></a>, making this the.</p>
+                                <p>Available, but the majority have suffered alteration.By injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The <b>point of using Lorem Ipsum</b> is that it has a more-or-less.</p>
+                            </div>
+
+                            <div class="line_3" style="margin:4px 0px 23px;"></div>
+
+                            <div class="about_author">
+                            	<h4>关于作者</h4>
+                                <!--这里是头像-->
+                            	<div class="photo"><a href="#"><img src="images/ava_default_3.jpg" alt="" /></a></div>
+                                <div class="bio">
+                                	<p class="name"><a href="#" th:text="${curVideoPoster.username}">Roman Polyarush</a></p>
+                                    <p th:text="${curVideoPoster.userAbout}">Fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                                </div>
+
+                                <div class="clearboth"></div>
+                            </div>
+
+                            <div class="line_3" style="margin:17px 0px 23px;"></div>
+                        </article>
+
+                      <!--  <div class="block_post_tags">
+                        	<p>Tags: <a href="#">business,</a><a href="#">stock market</a></p>
+                        </div>
+
+                        <div class="block_post_social">
+                        	<h4><span>B</span></h4>
+
+                            <section class="rating">
+                            	<p class="title"><span>Rating</span></p>
+
+                                <ul>
+                                	<li><span>1024</span>views</li>
+                                    <li><span>4</span>comments</li>
+                                </ul>
+                            </section>
+
+                            <section class="subscribe">
+                            	<p class="title"><span>Subscribe</span></p>
+                                <a href="#">Subscribe to comments</a>
+                            </section>
+
+                            <section class="recommend">
+                            	<p class="title"><span>recommend to friends</span></p>
+
+                                <ul>
+                                	<li><a href="http://www.facebook.com/share.php?u=http://google.com" target="_blank"><img src="images/button_social_1.png" alt="" /></a></li>
+                                    <li><a href="https://twitter.com/share?text=I like BusinessNews Template and You?" target="_blank"><img src="images/button_social_2.png" alt="" /></a></li>
+                                    <li><a href="https://plusone.google.com/_/+1/confirm?url=http://google.com" target="_blank"><img src="images/button_social_3.png" alt="" /></a></li>
+                                    <li><a href="http://pinterest.com/pin/create/button/?url=http://google.com" target="_blank"><img src="images/button_social_4.png" alt="" /></a></li>
+                                </ul>
+                            </section>
+
+                            <div class="clearboth"></div>
+                        </div>-->
+
+                        <div class="line_2" style="margin:22px 0px 29px;"></div>
+
+                        <div class="block_related_posts">
+                        	<h3>热评博客</h3>
+
+                            <div class="block_main_news">
+                            	<article class="block_news_post" th:each="popularBlog:${popularBlogs}" >
+                                    <div class="f_pic"><a href="news_post.html" class="general_pic_hover scale_small" th:href="@{/jumpVideoDetail(videoId=${popularBlog.Id})}"><img src="images/pic_main_news_6.jpg" alt="" style="height: 130px;width: 130px;" th:src="${'http://localhost:8888/pic-cutted/'+popularBlog.coverUrl}"/></a></div>
+
+                                  	<p class="category"><a href="#"  th:href="@{/jumpVideoDetail(videoId=${popularBlog.Id})}">photography</a></p>
+                                    <p class="title"><a href="news_post.html" th:text="${#strings.abbreviate(popularBlog.blogTitle,10)}" th:href="@{/jumpVideoDetail(videoId=${popularBlog.Id})}" >Many desktop publishing packages and web page editors.</a></p>
+                                    <div class="info">
+                                        <div class="date"><p th:text="${popularBlog.createDate}">11 July, 2012</p></div>
+                                        <a href="#" class="views" th:text="${popularBlog.shareNum}">183</a>
+                                        <div class="clearboth"></div>
+                                    </div>
+                                </article>
+
+
+
+                            	<div class="clearboth"></div>
+                            </div>
+                        </div>
+
+                        <div class="line_2" style="margin:5px 0px 28px;"></div>
+
+                        <div class="block_comments media-list" >
+                        	<!--<h2>4 Comments</h2>-->
+
+                            <div class="comment">
+                            	<div class="userpic"><a href="#"><img src="images/ava_default_1.jpg" alt="" /></a></div>
+                                <div class="content">
+                                	<p class="name"><a href="#">John Doe</a></p>
+                                    <p class="info"><span class="date">Febr 16, 2012 at 4:43 pm</span><a href="#" class="control">Reply</a></p>
+                                    <p class="text">Established fact that a reader will be distracted by the readable content of a page. When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</p>
+                                </div>
+                                <div class="clearboth"></div>
+                                <div class="line_3"></div>
+                            </div>
+
+                            <div class="comment">
+                            	<div class="userpic"><a href="#"><img src="images/ava_default_1.jpg" alt="" /></a></div>
+                                <div class="content">
+                                	<p class="name"><a href="#">Sara Gordon</a></p>
+                                    <p class="info"><span class="date">Febr 16, 2012 at 4:43 pm</span><a href="#" class="control">Reply</a></p>
+                                    <p class="text">Distracted by the readable content of a page. When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
+                                </div>
+                                <div class="clearboth"></div>
+                                <div class="line_3"></div>
+
+                                <div class="comment">
+                                    <div class="userpic"><a href="#"><img src="images/ava_default_1.jpg" alt="" /></a></div>
+                                    <div class="content">
+                                        <p class="name"><a href="#">Alan Foylee</a></p>
+                                        <p class="info"><span class="date">Febr 16, 2012 at 4:43 pm</span><a href="#" class="control">Reply</a></p>
+                                        <p class="text">Content of a page. When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+                                    </div>
+                                    <div class="clearboth"></div>
+                                    <div class="line_3"></div>
+                                </div>
+                            </div>
+
+                            <div class="comment">
+                            	<div class="userpic"><a href="#"><img src="images/ava_default_1.jpg" alt="" /></a></div>
+                                <div class="content">
+                                	<p class="name"><a href="#">Matilda King</a></p>
+                                    <p class="info"><span class="date">Febr 16, 2012 at 4:43 pm</span><a href="#" class="control">Reply</a></p>
+                                    <p class="text">Established fact that a reader will be distracted by the readable content of a page. When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</p>
+                                </div>
+                                <div class="clearboth"></div>
+                                <div class="line_3"></div>
+                            </div>
+                            <!--<ul class="media-list">
+                                &lt;!&ndash; 这里一个li就是一个评论或者回复 &ndash;&gt;
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="#"> </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"></h4>
+                                    </div>
+                                </li>
+                            </ul>-->
+
+                        </div>
+
+                        <div class="separator" style="height:30px;"></div>
+
+                        <div class="block_leave_reply">
+                        	<h3>发表评论</h3>
+                        	<p class="text">Your email address will not be published. Required fields are marked <span>*</span></p>
+
+                        	<!--<form class="w_validation" action="#" >
+                            	<p>Name<span>*</span></p>
+                            	<div class="field"><input type="text" class="req" /></div>
+
+                                <p>E-mail<span>*</span></p>
+                            	<div class="field"><input type="text" class="req" /></div>
+
+                                <p>Comment</p>
+                                <div class="textarea"><textarea cols="1" rows="1"></textarea></div>
+
+                                <input type="submit" class="general_button" value="Post comment" />
+                            </form>-->
+
+                            <form id="commentform" onsubmit="return false;" action=""
+                                  method="post" class="w_validation">
+                                <!--当前博客的id-->
+                                <input id="commentVid" type="hidden" name="videoId"
+                                       th:value='${curvideoblog.Id}' />
+                                <!--当前发布博客的用户id-->
+                                <input type="hidden" name="posterId" th:value='${session.userInfo?.userId}' />
+
+                                <!-- <input id="commentContent" type="textarea" name="comment" border="1px solid blue" /> -->
+                                <p>评论</p>
+                                <div class="textarea"><textarea id="commentContent" class="form-control" cols="1" rows="1" name="comment"></textarea></div>
+
+                                <!-- <button type="submit" class="btn btn-default">发表评论</button> -->
+                                <button type="submit" class="btn btn-info general_button">发表</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <div class="sidebar">
+                    	<!--<div class="block_subscribes_sidebar">
+                        	<div class="service">
+                            	<a href="#" class="rss">
+                                	<span class="num">11 234</span>
+                                    <span class="people">Subscribers</span>
+                                </a>
+                            </div>
+
+                            <div class="service">
+                            	<a href="#" class="tw">
+                                	<span class="num">781</span>
+                                    <span class="people">Followers</span>
+                                </a>
+                            </div>
+
+                            <div class="service">
+                            	<a href="#" class="fb">
+                                	<span class="num">341</span>
+                                    <span class="people">Subscribers</span>
+                                </a>
+                            </div>
+                        </div>-->
+
+                      <div class="separator" style="height:31px;"></div>
+
+                       <!-- <div class="block_popular_posts">
+                        	<h4>Popular Posts</h4>
+
+                        	<div class="article">
+								<div class="pic">
+									<a href="#" class="w_hover">
+										<img src="images/pic_popular_post_1.jpg" alt="" />
+										<span></span>
+									</a>
+								</div>
+
+								<div class="text">
+									<p class="title"><a href="#">Packages and web page editors their default text.</a></p>
+									<div class="date"><p>11 July, 2012</p></div>
+                                    <div class="icons">
+                                    	<ul>
+                                        	<li><a href="#" class="views">41</a></li>
+                                            <li><a href="#" class="comments">22</a></li>
+                                        </ul>
+                                    </div>
+								</div>
+							</div>
+							<div class="line_3"></div>
+
+                            <div class="article">
+								<div class="pic">
+									<a href="#" class="w_hover">
+										<img src="images/pic_popular_post_2.jpg" alt="" />
+										<span></span>
+									</a>
+								</div>
+
+								<div class="text">
+									<p class="title"><a href="#">Web page editors their default model text, and a search for.</a></p>
+									<div class="date"><p>07 July, 2012</p></div>
+                                    <div class="icons">
+                                    	<ul>
+                                        	<li><a href="#" class="views">24</a></li>
+                                            <li><a href="#" class="comments">16</a></li>
+                                        </ul>
+                                    </div>
+								</div>
+							</div>
+							<div class="line_3"></div>
+
+                            <div class="article">
+								<div class="pic">
+									<a href="#" class="w_hover">
+										<img src="images/pic_popular_post_3.jpg" alt="" />
+										<span></span>
+									</a>
+								</div>
+
+								<div class="text">
+									<p class="title"><a href="#">Editors their default model text, and a search uncover.</a></p>
+									<div class="date"><p>05 July, 2012</p></div>
+                                    <div class="icons">
+                                    	<ul>
+                                        	<li><a href="#" class="views">33</a></li>
+                                            <li><a href="#" class="comments">25</a></li>
+                                        </ul>
+                                    </div>
+								</div>
+							</div>
+							<div class="line_2"></div>
+                        </div>
+
+                        <div class="separator" style="height:31px;"></div>
+
+                        <div class="block_popular_stuff">
+                        	<h4>Popular Video</h4>
+
+                            <div class="content">
+                            	<a href="#" class="view_all">Show all video</a>
+                            	<div class="media"><a href="http://www.youtube.com/watch?v=ySIvism2af8" class="general_pic_hover play no_fx" data-rel="prettyPhoto" title="Popular Video"><img src="images/pic_pop_video.jpg" alt="" /></a></div>
+                                <p><a href="blog_post_w_video.html">Publishing packages and web page editors their default model.</a> <img src="images/icon_video.gif" alt="" /></p>
+                                <p class="date">11 July, 2012</p>
+                            </div>
+
+                            <div class="info">
+                            	<ul>
+                                	<li class="comments"><a href="#">115</a></li>
+                                    <li class="views"><a href="#">220</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="clearboth"></div>
+
+                            <div class="line_2"></div>
+                        </div>
+
+                        <div class="separator" style="height:31px;"></div>
+
+                        <div class="separator" style="height:31px;"></div>
+
+                      	<div class="separator" style="height:31px;"></div>-->
+
+                    </div>
+
+                	<div class="clearboth"></div>
+                </div>
+            </div>
+        </div>
+    	<!-- CONTENT END -->
+
+        <!-- FOOTER BEGIN -->
+
+        <!-- FOOTER END -->
+    </div>
+
+    <!-- POPUP BEGIN -->
+    <div id="overlay"></div>
+    <div th:replace="common/header::loginmodal"></div>
+    <!-- POPUP END -->
+
+    <!--videojs播放js-->
+    <script src="./video.min.js" th:src="@{videojs/video.min.js}"></script>
+    <script type="text/javascript" src="js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+
+    <script>
+        var player = videojs('blogvideo', {
+            muted: true,
+            controls: true,
+            height: 343,
+            width: 612,
+            loop: true,
+            // 更多配置.....
+        });
+        $(function () {
+            /*加载评论树*/
+            loadcomments();
+            //发表评论添加ajax
+            $("#commentform").submit(
+                function(){
+                    sendComment();
+                    /* return false; */
+                }
+            );
+            /*为评论添加一些验证*/
+            $("#commentContent").focus(function(){
+                $("#commentContent").attr("placeholder","请输入评论内容");
+            });
+            $("#commentContent").blur(function(){
+                $("#commentContent").attr("placeholder","评论内容不能为空");
+            });
+        });
+        /*发表评论*/
+        function sendComment(){
+            var videoId=$("#commentVid").val();
+            var commentContent=$("#commentContent").val();
+            if(!$.trim(commentContent).length>0){
+                $("#commentContent").attr("placeholder","别尝试点，请输入评论内容");
+                return;
+            }
+            console.log("sendComment:"+videoId+" "+commentContent);
+            $.ajax('/comment/send', {
+                type : "post",
+                dataType : "json",
+                data : {
+                    "videoId":videoId,
+                    "comment":commentContent
+                },
+                success : function(data) {
+                    console.log("data")
+                    //判断是否正确
+                    var dataArr = data;
+                    var uls = $(".media-list");
+                    //清空子元素，否则追加元素
+                    uls.empty();
+                    //创建评论树
+                    console.log(dataArr);
+                    getComment(dataArr,0);
+                    uls.off("click","[type='submit']");
+                    addulEvents();
+                },
+                error : function(xhr, msg, e) {
+                    console.log("请求失败:" + msg+e)
+                }
+            });
+        };
+        /*发表回复*/
+        function sendReply(replyId,videoId,pId,replycontent){
+            var pId=pId;
+            var replyId=replyId;
+            var videoid=videoId;
+            var replycontent=replycontent;
+            console
+            console.log(pId+" "+replyId+" "+videoid+" "+replycontent);
+            console.log("sendreply");
+            $.ajax('/comment/reply', {
+                type : "post",
+                dataType : "json",
+                data : {
+                    "replyId":replyId,
+                    "videoId":videoid,
+                    "pId":pId,
+                    "replycontent":replycontent
+                },
+                success : function(data) {
+                    //判断是否正确
+                        var dataArr = data;
+                        var uls = $(".media-list");
+                        //清空子元素，否则追加元素
+                        uls.empty();
+
+                        //创建评论树
+                        console.log(dataArr);
+                        getComment(dataArr,0);
+                        uls.off("click","[type='submit']");
+                        addulEvents();
+                },
+                error : function(xhr, msg, e) {
+                    console.log("请求失败:" + msg+e)
+                }
+            });
+        };
+
+        /*重新构造评论树*/
+        function loadcomments(){
+            var videoid=$("#commentform>[name='videoId']").val();
+            console.log(videoid);
+            console.log("构造评论树");
+            $.ajax('/comment/load', {
+                type : "get",
+                dataType : "json",
+                data : {
+                    /* "userid":userid, */
+                    "videoId":videoid
+                },
+                success : function(data) {
+                    //判断是否正确
+                    /*if (result.success) {*/
+                    var dataArr = data;
+                    var uls = $(".media-list");
+                    //清空子元素，否则追加元素
+                    uls.empty();
+                    //创建评论树
+                    console.log(dataArr);
+                    getComment(dataArr,0)
+                    uls.off("click","[type='submit']");
+                    addulEvents();
+                    /*} else {
+                        console.log("加载建议失败 : "+result.msg);
+                    }*/
+                },
+                error : function(xhr, msg, e) {
+                    console.log("请求失败:" + msg+e)
+                }
+            });
+        };
+        /*该方法用于获取回复的内容*/
+        function addulEvents(){
+            $(".media-list").on("click","[type='submit']",function(e){
+                console.log(this);
+                var replyId=$(this).parent().children().eq(0).val();
+                var videoId=$(this).parent().children().eq(1).val();
+                var pId=$(this).parent().children().eq(2).val();
+                var replycontent=$(this).parent().children().eq(3).val();
+                sendReply(replyId,videoId,pId,replycontent);
+            });
+
+        };
+        /*该方法用于递归构造评论树*/
+        function getComment(comments, pid) {
+            $.each(comments, function(n, value) {
+                if (value.pid == pid) {
+                    console.log("n`s num:"+n);
+                    // 记得更改掉，这里的viedeoid应该从跳转的时候就应该进来
+                    if(value.level==1){
+                        $(".media-list").prepend("<div class='comment commentbox level"+1+"'> <div class='userpic'><a href='#'><img src='images/ava_default_1.jpg' alt='' /></a></div> <div class='content'> <p class='name'>"+value.nickname+"<a href='#'></a></p> <p class='info'><span class='date'>"+value.createDate+"</span><button class='reply control'>回复</button></p> <div  class='i' tabIndex='-1' style='display:none' > <form class='replyform' onsubmit='return false;' action='' method='post'> <input  class='replyId' type='hidden' value='"+value.userId+"' name='replyId'> <input type='hidden' class='videoId' name='videoid' value='"+value.blogId+"'> <input type='hidden' class='pId' name='pId' value='"+value.id+"'> <input class='replycontent form-control' type='text' name='replycontent' placeholder='一些回复'> <button class='btn btn-info' type='submit'>发布</button> </form></div> <p class='text'>"+value.content+"</p> </div> <div class='clearboth'></div> <div class='line_3'></div> </div>");
+                        getComment(comments,value.id);
+                        //递归
+                    }else if(value.level==2){
+                        /*$(".media-list .level1").append("<div class='comment commentbox level"+2+"'> <div class='userpic'><a href='#'><img src='images/ava_default_1.jpg' alt='' /></a></div> <div class='content'> <p class='name'>"+value.nickname+"<a href='#'></a></p> <p class='info'><span class='date'>"+value.createDate+"</span><button class='reply control'>回复</button></p> <div  class='i' tabIndex='-1' style='display:none' > <form class='replyform' onsubmit='return false;' action='' method='post'> <input  class='replyId' type='hidden' value='"+value.userId+"' name='replyId'> <input type='hidden' class='videoId' name='videoid' value='"+value.blogId+"'> <input type='hidden' class='pId' name='pId' value='"+value.id+"'> <input class='replycontent form-control' type='text' name='replycontent' placeholder='一些回复'> <button  class='btn btn-info' type='submit'>发布</button> </form> </div> <p class='text'>"+value.content+"</p> </div> <div class='clearboth'></div> <div class='line_3'></div> </div>");*/
+                           /* $(".media-list .level1").append(function(){
+                                    $(this).append("<div class='comment commentbox level" + 2 + "'> <div class='userpic'><a href='#'><img src='images/ava_default_1.jpg' alt='' /></a></div> <div class='content'> <p class='name'>" + value.nickname + "<a href='#'></a></p> <p class='info'><span class='date'>" + value.createDate + "</span><button class='reply control'>回复</button></p> <div  class='i' tabIndex='-1' style='display:none' > <form class='replyform' onsubmit='return false;' action='' method='post'> <input  class='replyId' type='hidden' value='" + value.userId + "' name='replyId'> <input type='hidden' class='videoId' name='videoid' value='" + value.blogId + "'> <input type='hidden' class='pId' name='pId' value='" + value.id + "'> <input class='replycontent form-control' type='text' name='replycontent' placeholder='一些回复'> <button  class='btn btn-info' type='submit'>发布</button> </form> </div> <p class='text'>" + value.content + "</p> </div> <div class='clearboth'></div> <div class='line_3'></div> </div>");
+                            });*/
+                        //递归
+                        getComment(comments,value.id);
+                    }
+                }
+                $(".reply").click(
+                    function(e){
+                        $(e.target).parent().next().css("display","block");
+                    });
+                $(".replycontent").blur(
+                    function(){
+                        $(".reply").parent().next().css("display","none");
+                    });
+            });
+        };
+
+    </script>
+<!--这里是评论模块的sceipt-->
