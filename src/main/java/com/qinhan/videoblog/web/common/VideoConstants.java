@@ -11,4 +11,9 @@ public interface VideoConstants {
 
 	//用户上传视频存放位置
 	public static final String VIDEO_TEMP_PATH="F:\\bysj\\tmp\\";
+
+	//用户上传头像原始图片存放位置
+	public static final String HEADING_PIC_ORIGIN_PATH="F:\\bysj\\tmp\\headings\\origin\\";
+	//用户上传头像处理后存放位置
+	public static final String HEADING_PIC_PATH="F:\\bysj\\tmp\\headings\\";
 }

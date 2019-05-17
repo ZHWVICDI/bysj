@@ -2,9 +2,14 @@ package com.qinhan.videoblog.service.impl;
 
 import com.qinhan.videoblog.service.MediaService;
 import com.qinhan.videoblog.web.common.VideoConstants;
+import org.imgscalr.Scalr;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +19,12 @@ import java.util.Map;
 @Service
 public class MediaServiceImpl implements MediaService {
 
+    /**
+     * 获取视频相关信息
+     * @param ffmpegPath
+     * @param videoPath
+     * @return
+     */
     @Override
     public Map<String, String> getInfo(String ffmpegPath,String videoPath) {
         // 创建一个List集合来保存转换视频文件为flv格式的命令
@@ -47,11 +58,17 @@ public class MediaServiceImpl implements MediaService {
         return meta;
     }
 
+    /**
+     * 对视频进行转码操作
+     * @param ffmpegPath
+     * @param videoPath
+     * @param fileName
+     */
     @Override
     public void convert(String ffmpegPath,String videoPath, String fileName) {
         System.out.println("转码开始--");
         String lastType=fileName.substring(fileName.lastIndexOf('.')+1);
-    String newFileName = fileName.replace(lastType,"flv");
+        String newFileName = fileName.replace(lastType,"flv");
         // 创建一个List集合来保存转换视频文件为flv格式的命令
         List<String> convert = new ArrayList<String>();
         convert.add(ffmpegPath); // 添加转换工具路径
@@ -83,6 +100,12 @@ public class MediaServiceImpl implements MediaService {
 
     }
 
+    /**
+     * 提取关键帧操作
+     * @param ffmpegpath
+     * @param videoPath
+     * @param covername
+     */
     @Override
     public void cutPic(String ffmpegpath,String videoPath,String covername) {
         System.out.println("开始提取图片");
@@ -115,4 +138,24 @@ public class MediaServiceImpl implements MediaService {
         }
 
     }
+
+    /**
+     *裁剪图片
+     * @param headingOriImagePath  图片原始文件目录
+     * @param headingImagePath  图片现在文件目录
+     */
+    @Override
+    public void processHeadingImage(String headingOriImagePath, String headingImagePath) {
+        try {
+            BufferedImage  img = ImageIO.read(new File(headingOriImagePath));
+            BufferedImage  newImage = Scalr.resize(img, Scalr.Method.SPEED, 80, 80);
+             ImageIO.write(newImage, "JPEG", new File(headingImagePath));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+           throw new RuntimeException("CUT_IMAGE_FAILED");
+        }
+    }
+
+
 }

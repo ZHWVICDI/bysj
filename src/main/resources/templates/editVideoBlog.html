@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>上传视频播客</title>
+    <title>修改博客内容</title>
 
     <meta name="keywords" content="" />
     <meta name="description" content="" />
@@ -70,7 +70,7 @@
 <body>
 <div class="wrapper sticky_footer">
     <!-- HEADER BEGIN -->
-    <header>
+    <header >
         <div id="header">
             <section class="top">
                 <div class="inner">
@@ -90,22 +90,15 @@
                             <ul>
                                 <li class="current">
                                     <a href="#login" th:if="${session.userInfo==null}" data-toggle="modal" class="open_popup" id="loginmodal">登录</a>
-                                    <a href="#login" th:unless="${session.userInfo==null}" data-toggle="modal" class="open_popup">
-                                        <img src="..." alt="..." class="img-circle">
+                                    <a href="#" th:unless="${session.userInfo==null}" data-toggle="modal" class="open_popup">
+                                        <img src="..." alt="..." class="img-circle" style="width:20px;height:20px;" th:src="${'http://localhost:8888/headings/'+session.userInfo.headingUrl}">
                                     </a>
                                 </li>
-                                <li><a href="registration.html" th:href="@{/toRegister}" th:if="${session.userInfo==null}">注册</a></li>
+                                <li th:if="${session.userInfo==null}"><a href="registration.html" th:href="@{/toRegister}" >注册</a></li>
+                                <li th:unless="${session.userInfo==null}"><a href="registration.html" th:href="@{/exit}" >退出</a></li>
                                 <li><a href="#" th:href="@{/toVideoBlogUp}">上传博客</a></li>
                             </ul>
                         </div>
-                        <!--这个是跳到其它地方的链接-->
-                        <!--  <div class="block_social_top">
-                              <ul>
-                                  <li><a href="#" class="fb">Facebook</a></li>
-                                  <li><a href="#" class="tw">Twitter</a></li>
-                                  <li><a href="#" class="rss">RSS</a></li>
-                              </ul>
-                          </div>-->
                     </div>
 
                     <div class="clearboth"></div>

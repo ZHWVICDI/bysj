@@ -264,10 +264,18 @@ public class BlogController {
      @RequestMapping("/deleteBlog")
     public String deleteBlog(@NumberFormat Integer videoId,ModelMap modelMap){
             //删除博客信息
-         blogService.deleteBlogById(videoId);
+         try{
+            blogService.deleteBlogById(videoId);
+         }catch (RuntimeException e){
+             e.printStackTrace();
+             if(e.getMessage()!=null&&e.getMessage().equals("DELETE_BLOG_ERROR")){
+                 modelMap.put("result","删除视频博客失败");
+                 return "pass/deleteResult";
+             }
+         }
             //请求重新渲染博客页面
-
-         return "forward:toMyPersonblogs";
+        modelMap.put("result","删除博客成功");
+         return "pass/deleteResult";
      }
 
 

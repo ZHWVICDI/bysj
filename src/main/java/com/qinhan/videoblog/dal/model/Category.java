@@ -11,7 +11,6 @@ public class Category {
     //策略名
     @Column(name = "category_name", nullable = false)
     private String categoryName;
-
     //父策略---这个针对二级策略
     @Column(name = "parent_id",columnDefinition = "int(11) default 0 comment '父级分类id'")
     private int parent;

@@ -10,7 +10,8 @@
 <header class="am-topbar am-topbar-inverse admin-header" th:fragment="personheader">
     <div class="am-topbar-brand">
         <a href="javascript:;" class="tpl-logo">
-            <img src="" alt="换成自己的logo">
+           <!-- <img src="" alt="换成自己的logo" >-->
+
         </a>
     </div>
     <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
@@ -122,7 +123,7 @@
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <!--这里借鉴一下，看一下bootstrap 的导航条 继承到index中去-->
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick"th:text="${session.userInfo?.username}"></span><span class="tpl-header-list-user-ico"> <img src="assets/img/user01.png"></span>
+                    <span class="tpl-header-list-user-nick"th:text="${session.userInfo?.username}"></span><span class="tpl-header-list-user-ico"> <img src="assets/img/user01.png" th:src="${'http://localhost:8888/headings/'+session.userInfo.headingUrl}"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="#" th:href="@{/toPersonInfo}"><span class="am-icon-bell-o"></span> 个人信息</a></li>
@@ -201,6 +202,13 @@
                             <i class="am-icon-angle-right"></i>
                             <span>个人信息完善</span>
                            <!-- <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>-->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="form-amazeui.html" th:href="@{/toModifyHead}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>头像修改</span>
+                            <!-- <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>-->
                         </a>
                     </li>
                 </ul>

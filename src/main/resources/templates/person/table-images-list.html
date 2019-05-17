@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
+    <title>上传博客阅览</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,7 +84,7 @@
                         <div class="tpl-table-images">
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-4" th:each="videoblog:${uploadedBLogsPage.content}">
                                 <div class="tpl-table-images-content">
-                                    <div class="tpl-table-images-content-i-time" th:text="${videoblog.createDate}">发布时间：2016-09-12</div>
+                                    <div class="tpl-table-images-content-i-time" th:text="${'发布时间：'+videoblog.createDate}">发布时间：2016-09-12</div>
                                     <div class="tpl-i-title" th:text="${videoblog.blogTitle}">
                                         “你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！
                                     </div>

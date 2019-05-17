@@ -265,7 +265,7 @@
             <ol class="am-breadcrumb">
                 <li><a href="#" class="am-icon-home">个人中心</a></li>
                 <!--<li><a href="#">个人信息</a></li>-->
-                <li class="am-active">个人信息完善</li>
+                <li class="am-active">修改个人头像</li>
             </ol>
             <div class="tpl-portlet-components">
                 <div class="portlet-title">
@@ -288,7 +288,7 @@
 
 
                         <div class="am-u-sm-12 am-u-md-9">
-                            <form class="am-form am-form-horizontal" id="modifyUserForm" th:action="@{/modifyInfo}" th:method="post">
+                            <form class="am-form am-form-horizontal" id="modifyUserForm" enctype="multipart/form-data" th:action="@{/modifyHeading}" th:method="post">
 
                                 <!--这里我打算用一个头像的a标签显示，点击弹出一个模态框来实现修改头像功能-->
                                 <!--<div class="am-form-group">
@@ -331,39 +331,12 @@
                                     </div>
                                 </div>-->
                                 <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label" th:text="${result}" th:unless="${result=='用户修改成功'}" style="color: red;"></label>
-                                    <label  class="am-u-sm-3 am-form-label" th:text="${result}" th:if="${result=='用户修改成功'}" style="color: green;"></label>
+                                    <label class="am-u-sm-3 am-form-label" th:text="${result}" th:unless="${result=='头像修改成功'}" style="color: red;"></label>
+                                    <label  class="am-u-sm-3 am-form-label" th:text="${result}" th:if="${result=='头像修改成功'}" style="color: green;"></label>
                                     <div class="am-u-sm-9">
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label for="user-email" class="am-u-sm-3 am-form-label" >电子邮件 / Email</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="email" id="user-email" placeholder="修改你的电子邮件 / Email" th:value="${userDetail?.email}" name="email">
-                                       <!-- <small>邮箱你懂得...</small>-->
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="tel" id="user-phone" placeholder="完善你的电话号码 / Telephone" th:value="${userDetail?.telephone}" name="telephone">
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ号</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="完善你的QQ号码" th:value="${userDetail?.qq}" name="qq">
-                                    </div>
-                                </div>
-                                <div class="am-form-group">
-                                    <label for="user-age" class="am-u-sm-3 am-form-label">年龄</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="number" pattern="[0-9]*" id="user-age" placeholder="完善你的年龄" th:value="${userDetail?.age}" name="age">
-                                    </div>
-                                </div>
                                 <!--<div class="am-form-group">
                                     <label for="user-weibo" class="am-u-sm-3 am-form-label">微博 / Twitter</label>
                                     <div class="am-u-sm-9">
@@ -371,18 +344,9 @@
                                     </div>
                                 </div>-->
                                 <div class="am-form-group">
-                                    <label for="user-birthday" class="am-u-sm-3 am-form-label">生日</label>
+                                    <label for="user-birthday" class="am-u-sm-3 am-form-label">个人头像修改</label>
                                     <div class="am-u-sm-9">
-                                        <input type="date" pattern="[0-9]*" id="user-birthday" placeholder="完善你的生日" th:value="${userDetail?.birthday}" name="birthday">
-                                    </div>
-                                </div>
-
-
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
-                                    <div class="am-u-sm-9">
-                                        <textarea class="" rows="5" id="user-intro" placeholder="完善个人简介" th:text="${userDetail?.userAbout}" name="userAbout"></textarea>
-                                        <small>250字以内写出你的一生...</small>
+                                        <input type="file"  id="user-birthday"  name="headingUrl">
                                     </div>
                                 </div>
 

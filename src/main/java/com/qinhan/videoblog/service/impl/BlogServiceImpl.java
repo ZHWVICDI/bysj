@@ -6,11 +6,13 @@ import com.qinhan.videoblog.dal.UserRepo;
 import com.qinhan.videoblog.dal.model.Blog;
 import com.qinhan.videoblog.dal.model.User;
 import com.qinhan.videoblog.service.BlogService;
+import com.qinhan.videoblog.web.common.VideoConstants;
 import com.qinhan.videoblog.web.modelvo.BlogBodyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -129,8 +131,35 @@ public class BlogServiceImpl implements BlogService {
         throw new RuntimeException("THEBLOG_NOT_FOUND");
     }
 
+    /**
+     * 删除视频博客
+     * @param blogId
+     */
     @Override
     public void deleteBlogById(Integer blogId) {
+        //获取博客url并且删除相关的视频文件、关键帧文件 converurl、以及videourl
+        Blog blog=blogRepo.findById(blogId).get();
+        if(blog==null){
+            throw new RuntimeException("BLOG_NOT_FOUND");
+        }
+        // TODO: 2019/5/17 这里因为转码问题，所以用的仍然是MP4，所以之类的视频url是tem/下的视频文件，有余力更改过来
+            //得到视频文件地址、关键帧文件地址
+        String videopath= VideoConstants.VIDEO_TEMP_PATH+blog.getVideoUrl();
+        String videoConvertedPath=VideoConstants.VIDEO_CONVERTED_PATH+blog.getVideoUrl();
+        String cutpicPath=VideoConstants.PIC_CUTTED_PATH+blog.getCoverUrl();
+        //然后删除
+        File file1=new File(videopath);
+        if(file1.exists()){
+           file1.delete();
+        }
+        File file2=new File(videoConvertedPath);
+        if(file2.exists()){
+            file2.delete();
+        }
+        File file3=new File(cutpicPath);
+        if(file3.exists()){
+          file3.delete();
+        }
         blogRepo.deleteById(blogId);
     }
 

@@ -26,8 +26,8 @@
                             <ul>
                                 <li class="current">
                                     <a href="#login" th:if="${user==null}" data-toggle="modal" class="open_popup" id="loginmodal">登录</a>
-                                    <a href="#login" th:unless="${user==null}" data-toggle="modal" class="open_popup">
-                                        <img src="..." alt="..." class="img-circle">
+                                    <a href="#" th:unless="${user==null}" data-toggle="modal" class="open_popup">
+                                        <img src="..." alt="..." class="img-circle" style="width:20px;height:20px;" th:src="${'http://localhost:8888/headings/'+user.headingUrl}">
                                     </a>
                                 </li>
                                 <li th:if="${user==null}"><a href="registration.html" th:href="@{/toRegister}" >注册</a></li>
@@ -300,11 +300,11 @@
     </header>
     <!-- HEADER END -->
     <!-- POPUP BEGIN -->
-    <div id="login" class="block_popup fade" style="height: 300px" th:fragment="loginmodal">
+    <div id="login" class="block_popup fade" role="dialog" style="height: 300px" th:fragment="loginmodal">
         <div class="popup">
             <a href="#" class="close">Close</a>
             <div class="content">
-                <div class="title"><p>登陆本网站</p></div>
+                <div class="title"><p>欢迎登陆本视频播客网站</p></div>
                 <div class="form">
                     <form th:action="@{/login}" th:method="post"/>
                     <div class="column">
@@ -336,10 +336,10 @@
                     </form>
                 </div>
 
-                <div class="subtitle"><p>SIGN IN AS A USER</p></div>
+               <!-- <div class="subtitle"><p>SIGN IN AS A USER</p></div>
 
                 <div class="fb_button"><a href="#"><img th:src="@{images/button_fb_login.png}" alt="" /></a></div>
-                <div class="text"><p>Use your account on the social network Facebook, to create a profile on BusinessPress</p></div>
+                <div class="text"><p>Use your account on the social network Facebook, to create a profile on BusinessPress</p></div>-->
             </div>
         </div>
     </div>

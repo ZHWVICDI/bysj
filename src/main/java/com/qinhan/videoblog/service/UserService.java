@@ -1,6 +1,7 @@
 package com.qinhan.videoblog.service;
 import com.qinhan.videoblog.dal.model.User;
 import com.qinhan.videoblog.web.modelvo.UserModifyForm;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -22,4 +23,6 @@ public interface UserService {
     void modifyUserInfo(UserModifyForm userModifyForm, String username);
 
     User getUserById(Integer userId);
+
+    User updateHeadingUrl(MultipartFile headingUrl,String savePath,String username);
 }

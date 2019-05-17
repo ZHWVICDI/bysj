@@ -61,6 +61,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <!--video css 的样式-->
 <link href="./video-js.min.css" rel="stylesheet" th:href="@{videojs/video-js.min.css}">
+<!-- bootstrap的css文件部分 -->
+<link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
 <body>
 	<div class="wrapper sticky_footer">
     	<!-- HEADER BEGIN -->
@@ -88,7 +90,7 @@
                             <div class="block_video" style="width:612px;height:343px;">
                               <!--  <iframe src="http://player.vimeo.com/video/10788352" width="612" height="343" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>-->
                                 <video id="blogvideo" class="video-js vjs-default-skin" controls preload="none"  th:poster="${'http://localhost:8888/pic-cutted/'+curvideoblog.coverUrl}">
-                                    <source src="http://localhost:8888/20190509231046655test4.mp4" type="video/mp4">
+                                    <source src="http://localhost:8888/20190509231046655test4.mp4" type="video/mp4" th:src="${'http://localhost:8888/'+curvideoblog.videoUrl}">
                                 </video>
                             </div>
                           	<p class="title"><a href="#" th:text="${curvideoblog.blogTitle}">Words which don't look even slightly.</a></p>
@@ -124,7 +126,7 @@
                             <div class="about_author">
                             	<h4>关于作者</h4>
                                 <!--这里是头像-->
-                            	<div class="photo"><a href="#"><img src="images/ava_default_3.jpg" alt="" /></a></div>
+                            	<div class="photo"><a href="#"><img src="images/ava_default_3.jpg" alt="" style="width: 40px;height: 40px;"  th:src="${'http://localhost:8888/headings/'+curVideoPoster.headingUrl}"/></a></div>
                                 <div class="bio">
                                 	<p class="name"><a href="#" th:text="${curVideoPoster.username}">Roman Polyarush</a></p>
                                     <p th:text="${curVideoPoster.userAbout}">Fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
@@ -440,6 +442,8 @@
     <!--videojs播放js-->
     <script src="./video.min.js" th:src="@{videojs/video.min.js}"></script>
     <script type="text/javascript" src="js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+    <!-- bootstrap js 部分 包括jquery -->
+    <script src="./bootstrap-dist/js/bootstrap.js" th:src="@{bootstrap-dist/js/bootstrap.js}"></script>
 
     <script>
         var player = videojs('blogvideo', {

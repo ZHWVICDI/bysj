@@ -24,6 +24,15 @@ public class VideoServiceImpl implements VideoService {
     UserRepo userRepo;
     @Autowired
     MediaService mediaService;
+
+    /**
+     * 将表单的multipartFile视频文件 调用ffmpeg工具进行转码、截图存入指定路径  并且将信息持久化到上传用户的blog表中。
+     * @param video
+     * @param savepath
+     * @param ownername
+     * @param ffmpegpath
+     * @return
+     */
     @Override
     public int uploadVideo(MultipartFile video, String savepath, String ownername, String ffmpegpath) {
         //如果文件不为空，写入上传路径
@@ -84,4 +93,6 @@ public class VideoServiceImpl implements VideoService {
             return 0;
         }
     }
+
+
 }

@@ -30,4 +30,5 @@ public interface MediaService {
      */
     void cutPic(String ffmpegPath, String videoPath, String fileName);
 
+    void processHeadingImage(String headingOriImagePath,String headingImagePath);
 }

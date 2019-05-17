@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>BusinessNews</title>
+<title>首页</title>
 
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -67,6 +67,8 @@
 </script>-->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- bootstrap的css文件部分 -->
+    <link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
 </head>
 
 <body>
@@ -286,7 +288,7 @@
                         	<article class="block_topic_post" th:each="videoblog:${indexBlogs.content}">
                             	<p class="title"><a href="news_post.html" th:text="${videoblog.blogTitle}">Many desktop publishing packages and web page editors now use.</a></p>
                                 <div class="f_pic"><a href="news_post.html" class="general_pic_hover scale" th:href="@{/jumpVideoDetail(videoId=${videoblog.Id})}"><img src="images/pic_home_main_news_1.jpg" alt="" th:src="${'http://localhost:8888/pic-cutted/'+videoblog.coverUrl}" /></a></div>
-                                <p class="text" th:text="${#strings.abbreviate(videoblog.blogInfo,25)}">There are many variations of passages of available, but the majority have alteration.</p>
+                                <p class="text" th:text="${#strings.abbreviate(videoblog.blogInfo,16)}">There are many variations of passages of available, but the majority have alteration.</p>
                                 <div class="info">
                                 	<div class="date" th:text="${videoblog.createDate}"><p>11 July, 2012</p></div>
                                     
