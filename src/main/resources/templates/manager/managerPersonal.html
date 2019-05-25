@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>管理员界面</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <link rel="icon" type="image/png" href="assets/i/favicon.png" th:href="@{../assets/i/favicon.png}">
+  <!--<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png" th:href="@{../assets/i/app-icon72x72@2x.png}">-->
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css" type="text/css"  th:href="@{../assets/css/amazeui.min.css}"/>
+  <link rel="stylesheet" href="assets/css/admin.css" th:href="@{../assets/css/admin.css}">
+  <link rel="stylesheet" href="assets/css/app.css" th:href="@{../assets/css/app.css}">
+  <script src="assets/js/echarts.min.js" th:src="@{../assets/js/echarts.min.js}"></script>
+</head>
+
+<body data-type="index">
+
+<!--<header th:replace="common/managerheader::personheader"></header>-->
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+
+  <!--左边导航栏-->
+  <div th:replace="common/managerheader::personnav"></div>
+
+
+  <div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+      <!--如果可以这里存放，个人数据，以及对于用户个人的数据分析资料（echarts来做）-->
+     欢迎进入管理员中心
+    </div>
+    <ol class="am-breadcrumb">
+      <li><a href="#" class="am-icon-home">管理员中心</a></li><!--
+                <li><a href="#">个人信息展示</a></li>-->
+      <li class="am-active">管理员简介</li>
+    </ol>
+    <div class="tpl-content-scope">
+      <div class="note note-info">
+        <h3>
+          <span class="close" data-close="note">所有的管理员注意，有什么通知会在这里发布！</span>
+        </h3>
+        <!-- <p> Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件，可快速构建界面出色、体验优秀的跨屏页面，大幅提升开发效率。</p>
+         <p><span class="label label-danger">提示:</span> Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。
+         </p>-->
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<script src="assets/js/jquery.min.js" th:src="@{../assets/js/jquery.min.js}"></script>
+<script src="assets/js/amazeui.min.js" th:src="@{../assets/js/amazeui.min.js}"></script>
+<script src="assets/js/iscroll.js" th:src="@{../assets/js/iscroll.js}"></script>
+<script src="assets/js/app.js" th:src="@{../assets/js/app.js}"></script>
+</body>
+</html>

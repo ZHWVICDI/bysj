@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>视频博客审核详情页</title>
+
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="layout/plugins/html5.js" th:src="@{layout/plugins/html5.js}"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="layout/style.css" type="text/css" th:href="@{layout/style.css}"/>
+
+
+    <link rel="stylesheet" href="layout/plugins/ibuttons/css/jquery.ibutton.css" type="text/css" th:href="@{layout/plugins/ibuttons/css/jquery.ibutton.css}" />
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+    <!--video css 的样式-->
+<link href="./video-js.min.css" rel="stylesheet" th:href="@{videojs/video-js.min.css}">
+<!-- bootstrap的css文件部分 -->
+<link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
+<body>
+<div class="wrapper sticky_footer">
+
+    <!-- CONTENT BEGIN -->
+    <div id="content" class="right_sidebar">
+        <div class="inner">
+            <div class="general_content">
+                <div class="main_content">
+                    <div class="block_breadcrumbs">
+                        <div class="text"><p>当前位置</p></div>
+
+                        <ul><!--
+                            <li><a href="index.html">管理员</a></li>-->
+                            <li><a th:href="@{/toVideoList(page=${curBlogPage})}">返回审核界面</a></li>
+                            <!--<li th:>Blog Name</li>-->
+                        </ul>
+                    </div>
+                    <div class="separator" style="height:30px;"></div>
+
+                    <article class="block_single_post">
+                        <!--这里使用videojs来加载视频-->
+                        <div class="block_video" style="width:612px;height:343px;">
+                            <!--  <iframe src="http://player.vimeo.com/video/10788352" width="612" height="343" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>-->
+                            <video id="blogvideo" class="video-js vjs-default-skin" controls preload="none"  th:poster="${'http://localhost:8888/pic-cutted/'+curvideoblog.coverUrl}">
+                                <source src="http://localhost:8888/20190509231046655test4.mp4" type="video/mp4" th:src="${'http://localhost:8888/'+curvideoblog.videoUrl}">
+                            </video>
+                        </div>
+                        <p class="title"><a href="#" th:text="${curvideoblog.blogTitle}">Words which don't look even slightly.</a></p>
+                        <p class="subtitle" th:text="${curvideoblog.blogInfo}">Many variations of passages of available, but the majority have suffered alteration in some form. Humour, or randomised words which don't look even slightly believable.</p>
+
+                        <div class="info">
+                            <div class="date"><p th:text="${curvideoblog.createDate}">15 July, 2012</p></div>
+                            <div class="author"><p>创作: <a href="#" th:text="${curVideoPoster.username}">John Doe</a></p></div>
+
+                            <div class="r_part">
+                                <div class="category"><p>分类: <a href="#" th:text="${curBlogCategory.categoryName}" th:if="${curBlogCategory!=null}">BUSINESS</a><a th:unless="${curBlogCategory!=null}" th:text="未分类"></p></div>
+                                <a href="#" class="views" th:text="${curvideoblog.starNum}">650</a>
+                                <a href="#" class="comments" th:text="${curvideoblog.commentNum}">25</a>
+                            </div>
+                        </div>
+
+                        <div class="content" th:utext="${curvideoblog.blogContent}">
+                            <p>There are many variations of passages of available, but the majority have suffered alteration in some form, by injected humour, or <b>randomised words which</b> don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the generators on the Internet tend to repeat predefined <a href="#" class="lnk_blue"><b>chunks as necessary</b></a>, making this the first true generator on the Internet. It uses a dictionary of over words, combined with a handful of model sentence structures, to generate which looks reasonable.</p>
+                            <blockquote class="full">Going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. established fact that a reader will be distracted by the readable content.</blockquote>
+                            <p>Available, but the majority have suffered alteration.By injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. Established fact that a reader will be <a href="#" class="lnk_blue"><b>distracted by the readable</b></a> content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less.</p>
+
+                            <div class="separator" style="height:4px;"></div>
+                            <h6>Post image aligned to the left</h6>
+                            <div class="separator" style="height:4px;"></div>
+                            <a href="#" class="pic w_frame alignleft"><img src="images/pic_blog_post_2.jpg" alt="" /></a>
+                            <p>There are many variations of passages of available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage <b>need to be sure there isn't anything</b> embarrassing.</p>
+                            <p>Hidden in the middle of text. All the generators on the Internet tend to repeat predefined <a href="#" class="lnk_blue"><b>chunks as necessary</b></a>, making this the.</p>
+                            <p>Available, but the majority have suffered alteration.By injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The <b>point of using Lorem Ipsum</b> is that it has a more-or-less.</p>
+                        </div>
+
+                        <div class="line_3" style="margin:4px 0px 23px;"></div>
+
+                        <div class="about_author">
+                            <h4>关于作者</h4>
+                            <!--这里是头像-->
+                            <div class="photo"><a href="#"><img src="images/ava_default_3.jpg" alt="" style="width: 40px;height: 40px;"  th:src="${'http://localhost:8888/headings/'+curVideoPoster.headingUrl}"/></a></div>
+                            <div class="bio">
+                                <p class="name"><a href="#" th:text="${curVideoPoster.username}">Roman Polyarush</a></p>
+                                <p th:text="${curVideoPoster.userAbout}">Fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+                            </div>
+
+                            <div class="clearboth"></div>
+                        </div>
+
+                        <div class="line_3" style="margin:17px 0px 23px;"></div>
+                    </article>
+
+
+
+                    <div class="line_2" style="margin:22px 0px 29px;"></div>
+
+                    <div class="separator" style="height:30px;"></div>
+
+                    <div class="block_leave_reply">
+                       <a th:href="@{/toVideoList(page=${curBlogPage})}">返回审核界面</a>
+                    </div>
+
+                </div>
+
+                <div class="sidebar">
+
+
+                    <div class="separator" style="height:31px;"></div>
+
+
+
+                </div>
+
+                <div class="clearboth"></div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT END -->
+
+    <!-- FOOTER BEGIN -->
+
+    <!-- FOOTER END -->
+</div>
+
+<!-- POPUP BEGIN -->
+
+<!--videojs播放js-->
+<script src="./video.min.js" th:src="@{videojs/video.min.js}"></script>
+<script type="text/javascript" src="js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+<!-- bootstrap js 部分 包括jquery -->
+<script src="./bootstrap-dist/js/bootstrap.js" th:src="@{bootstrap-dist/js/bootstrap.js}"></script>
+
+<script>
+    var player = videojs('blogvideo', {
+        muted: true,
+        controls: true,
+        height: 343,
+        width: 612,
+        loop: true,
+        // 更多配置.....
+    });
+
+</script>
+<!--这里是评论模块的sceipt-->

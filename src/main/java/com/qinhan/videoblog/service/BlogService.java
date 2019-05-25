@@ -22,4 +22,9 @@ public interface BlogService {
     Blog getTheMostPopularBlog();
 
     void deleteBlogById(Integer blogId);
+
+    Page<Blog> getAllBlogsByStatus(Integer page, Integer size,String status);
+
+
+    void changeBlogStatus(Integer videoId,String status);
 }

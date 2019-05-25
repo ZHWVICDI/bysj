@@ -19,8 +19,15 @@ public class LoginController {
 	@RequestMapping("/login")
 	 public String login(HttpSession httpSession, String username, String password, ModelMap modelMap){
 			//校验
-
-	        boolean flag=userService.checkUserInfo(username, SimpleDigestUtil.encryptSHA(password));
+		boolean flag=false;
+			try{
+				flag=userService.checkUserInfo(username, SimpleDigestUtil.encryptSHA(password));
+			}catch (RuntimeException e){
+				if(e.getMessage()!=null&&e.getMessage().equals("USERACCOUNT_FROZEN")){
+					modelMap.put("result","您的账号已经被冻结，请联系管理员进行解冻处理！");
+					return "pass/loginsuccess";
+				}
+			}
 	        User user=userService.findUserByUsername(username);
 	        //如果成功登陆则
 	        if(flag){
@@ -31,11 +38,12 @@ public class LoginController {
 	            httpSession.setAttribute("userInfo",user);
 	            httpSession.setAttribute("username",user.getUsername());
 	            //提示用户登录成功
+				modelMap.addAttribute("result","登陆成功，欢迎您！");
 	            return "pass/loginsuccess";
 	        }
 	        //提示用户登录失败
 			modelMap.addAttribute("result","登陆失败,请重新登陆！");
-	        return "index";
+	        return "pass/loginsuccess";
 	    }
 	 
 	 @RequestMapping("/exit")

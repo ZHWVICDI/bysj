@@ -86,6 +86,7 @@ public class VideoServiceImpl implements VideoService {
             videoblog.setShareNum(0);
             videoblog.setCategoryId(0);
             videoblog.setType(1);
+            videoblog.setStatus("AUDIT");
             blogRepo.save(videoblog);
             int blogId=blogRepo.findByVideoUrl(filename).getId();
             return blogId;

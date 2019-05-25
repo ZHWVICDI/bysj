@@ -1,0 +1,156 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户管理界面</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png" th:href="@{../assets/i/favicon.png}">
+    <!-- <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png" th:href="@{../assets/i/app-icon72x72@2x.png}">-->
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" type="text/css"  th:href="@{../assets/css/amazeui.min.css}"/>
+    <link rel="stylesheet" href="assets/css/admin.css" th:href="@{../assets/css/admin.css}">
+    <link rel="stylesheet" href="assets/css/app.css" th:href="@{../assets/css/app.css}">
+    <script src="assets/js/echarts.min.js" th:src="@{../assets/js/echarts.min.js}"></script>
+</head>
+
+<body data-type="generalComponents">
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+    <!--左边导航条-->
+    <div th:replace="common/managerheader::personnav"></div>
+
+
+    <div class="tpl-content-wrapper">
+        <div class="tpl-content-page-title">
+            所有用户管理
+        </div>
+        <ol class="am-breadcrumb" >
+            <li><a href="#" class="am-icon-home">管理员中心</a></li>
+            <!--<li><a href="#">Amaze UI CSS</a></li>-->
+            <li class="am-active">所有用户</li>
+        </ol>
+        <div class="tpl-portlet-components">
+            <div class="portlet-title">
+                <div class="caption font-green bold">
+                    <span class="am-icon-code"></span> 用户列表
+                </div>
+                <div class="tpl-portlet-input tpl-fz-ml">
+                    <div class="portlet-input input-small input-inline">
+                        <div class="input-icon right">
+                            <i class="am-icon-search"></i>
+                            <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="tpl-block">
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-3">
+                        <!--<div class="am-input-group am-input-group-sm">
+                            <input type="text" class="am-form-field">
+                            <span class="am-input-group-btn">
+            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"></button>
+          </span>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-12">
+                        <form class="am-form">
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                <tr>
+                                    <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
+                                    <th class="table-id">用户ID</th>
+                                    <th class="table-title">邮箱</th>
+                                    <th class="table-type">状态</th>
+                                    <th class="table-author am-hide-sm-only">用户名</th>
+                                    <th class="table-date am-hide-sm-only">注册时间</th>
+                                    <th class="table-set">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="userDetail:${usersPage.content}">
+                                    <td><input type="checkbox" name="batchOp"></td>
+                                    <td th:text="${userDetail.userId}">1</td>
+                                    <td th:text="${userDetail.email}"><a href="#">Business management</a></td>
+                                    <td th:text="${userDetail.state}">default</td>
+                                    <td class="am-hide-sm-only" th:text="${userDetail.username}">测试1号</td>
+                                    <td class="am-hide-sm-only" th:text="${userDetail.registerDate}">2014年9月4日 7:28:47</td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a type="button"  class="am-btn am-btn-default am-btn-danger" th:href="@{/deleteUserByManager(userId=${userDetail.userId})}"><span class="am-icon-pencil-square-o"></span>删除</a>
+                                                <a type="button"  class="am-btn am-btn-default am-btn-secondary" th:href="@{/passUser(userId=${userDetail.userId},page=${usersPage.number+1})}"><span class="am-icon-copy"></span> 解冻账号</a>
+                                                <a type="button"  class="am-btn am-btn-default am-btn-danger" th:href="@{/frozenUser(userId=${userDetail.userId},page=${usersPage.number+1})}"><span class="am-icon-trash-o"></span>冻结账号</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="am-cf">
+
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li class=""><a href="https://my.oschina.net/wangxincj/blog/#" th:href="@{/toUserList(page=1)}">首页</a></li>
+                                        <li class="" th:if="${usersPage.hasPrevious()}"><a th:href="@{/toUserList(page=${usersPage.number+1-1})}">上一页</a></li>
+                                        <!--总页数小于等于3-->
+                                        <div th:if="${(usersPage.totalPages le 10) and (usersPage.totalPages gt 0)}" th:remove="tag">
+                                            <div th:each="pg : ${#numbers.sequence(0, usersPage.totalPages - 1)}" th:remove="tag">
+                                            <span th:if="${pg eq usersPage.getNumber()}" th:remove="tag">
+                                                <li class="active"><span class="current_page line_height" th:text="${pg+1}">${pageNumber}</span></li>
+                                            </span>
+                                                <span th:unless="${pg eq usersPage.getNumber()}" th:remove="tag">
+                                                <li class=""><a href="https://my.oschina.net/wangxincj/blog/#" th:href="@{/toUserList(page=${pg+1})}" th:text="${pg+1}"></a></li>
+                                            </span>
+                                            </div>
+                                        </div>
+                                        <!-- 总数数大于3时-->
+                                        <div th:if="${usersPage.totalPages gt 10}" th:remove="tag">
+                                            <li><a  th:href="@{/toUserList(page=${usersPage.number}-2+1)}" th:text="${usersPage.number-1+1}"></a></li>
+                                            <li class="" th:if="${usersPage.number-1+1 ge 0}"><a  th:href="@{/toUserList(page=${usersPage.number}-1+1)}" th:text="${usersPage.number+1}"></a></li>
+                                            <li class="active"><span class="current_page line_height current" th:text="${usersPage.number+1}"></span></li>
+                                            <li class="" th:if="${usersPage.number+1+1 lt usersPage.totalPages}"><a th:href="@{/toUserList(page=${usersPage.number}+1+1)}" th:text="${usersPage.number+2+1}"></a></li>
+                                            <li class="" th:if="${usersPage.number+2+1 lt usersPage.totalPages}"><a th:href="@{/toUserList(page=${usersPage.number}+2+1)}" th:text="${usersPage.number+3+1}"></a></li>
+                                        </div>
+
+                                        <li class="" th:if="${usersPage.hasNext()}"><a th:href="@{/toUserList(page=${usersPage.number+1+1})}">下一页</a></li>
+                                        <!--<li><a href="https://my.oschina.net/wangxincj/blog/#" th:href="https://my.oschina.net/wangxincj/blog/@{${curUrl}(page=${datas.totalPages-1})}">尾页</a></li>-->
+                                        <li><a th:href="@{/toUserList(page=${usersPage.totalPages} le 1 ? 1:${usersPage.totalPages}-1+1)}">尾页</a></li>
+                                        <li class=""><span th:utext="'共'+${usersPage.totalPages}+'页 / '+${usersPage.totalElements}+' 条'"></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tpl-alert"></div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
+<script src="assets/js/amazeui.min.js" th:src="@{../assets/js/amazeui.min.js}"></script>
+<script src="assets/js/app.js" th:src="@{../assets/js/app.js}"></script>
+</body>
+
+</html>

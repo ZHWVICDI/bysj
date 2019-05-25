@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -105,9 +105,9 @@
                                         </div>
                                         <div class="tpl-i-more">
                                             <ul>
-                                                <li><span class=" am-text-warning" th:text="${videoblog.commentNum}"> 100+</span></li>
-                                                <li><span class=" am-text-success" th:text="${videoblog.shareNum}"> 235+</span></li>
-                                                <li><span class=" font-green" th:text="${videoblog.starNum}"> 600+</span></li>
+                                                <!--<li><span class=" am-text-warning" th:text="${videoblog.commentNum}"> 100+</span></li>-->
+                                                <li><span class=" am-text-success" th:text="${'查看此博客数   '+videoblog.shareNum}"> 235+</span></li>
+                                                <!--<li><span class=" font-green" th:text="${videoblog.starNum}"> 600+</span></li>-->
                                             </ul>
                                         </div>
                                         <div class="am-btn-toolbar">

@@ -31,7 +31,7 @@ public class VideoDetailController {
             videoblog = blogService.getVideoInfo(videoId);
         } catch (RuntimeException e) {
             if (e.getMessage().equals("VIDEOBLOG_NOT_FOUND")) {
-                modelMap.put("result", "该视频播客未找到");
+                modelMap.put("result", "该视频博客未找到");
                 return "pass/indexresult";
             } else {
                 modelMap.put("result", "系统异常");
@@ -56,10 +56,6 @@ public class VideoDetailController {
         User owneruser = userService.getUserById(videoblog.getUserId());
 
         Category category = null;
-        /* if (videoblog.getCategoryId() == 0) {
-         *//*category.setCategoryName("未分类");*//*
-            modelMap.put("defaultCa'te")
-        } else {*/
         try {
             category = categoryService.getCategoryForCurVideoBlog(videoblog.getCategoryId());
         } catch (RuntimeException e) {

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -80,7 +81,14 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public Blog getVideoInfo(int videoId) {
-        if(blogRepo.findById(videoId).isPresent()){
+        Optional<Blog> blogOpl=blogRepo.findById(videoId);
+        if(blogOpl.isPresent()){
+            Blog blog=blogOpl.get();
+            if (blog.getShareNum()==null){
+                blog.setShareNum(0);
+            }
+            blog.setShareNum(blog.getShareNum()+1);
+            blogRepo.save(blog);
             return blogRepo.findById(videoId).get();
         }
         throw  new RuntimeException("VIDEOBLOG_NOT_FOUND");
@@ -161,6 +169,37 @@ public class BlogServiceImpl implements BlogService {
           file3.delete();
         }
         blogRepo.deleteById(blogId);
+    }
+
+    /**
+     * 根据状态返回待审核视频列表
+     * @param page
+     * @param size
+     * @param status
+     * @return
+     */
+    @Override
+    public Page<Blog> getAllBlogsByStatus(Integer page, Integer size, String status) {
+        Blog blog=new Blog();
+        blog.setStatus(status);
+        Example<Blog> example=Example.of(blog);
+
+        Sort sort=new Sort(Sort.Direction.DESC,"createDate");
+        Pageable pageable=PageRequest.of(page-1,size,sort);
+        Page<Blog> blogs=blogRepo.findAll(example,pageable);
+        return blogs;
+    }
+
+    /**
+     * 将博客的状态更改为指定的状态
+     * @param videoId
+     * @param status
+     */
+    @Override
+    public void changeBlogStatus(Integer videoId,String status) {
+        Blog blog=blogRepo.findById(videoId).get();
+        blog.setStatus(status);
+        blogRepo.save(blog);
     }
 
 }

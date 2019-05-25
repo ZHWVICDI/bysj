@@ -11,7 +11,6 @@ import com.qinhan.videoblog.web.modelvo.BlogBodyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,7 +63,12 @@ public class BlogController {
      * @return
      */
     @RequestMapping("/toVideoBlogUp")
-    public String toVideoUp(ModelMap modelMap) {
+    public String toVideoUp(HttpSession session,ModelMap modelMap) {
+        String username=(String) session.getAttribute("username");
+        if(username==null){
+            modelMap.addAttribute("result","请登陆后进行操作");
+            return "pass/indexresult";
+        }
         List<Category> categoryList = null;
         try {
             categoryList = categoryService.getCategories();

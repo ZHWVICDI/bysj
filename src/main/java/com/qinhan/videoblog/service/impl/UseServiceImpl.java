@@ -8,6 +8,10 @@ import com.qinhan.videoblog.web.common.DateUtil;
 import com.qinhan.videoblog.web.common.VideoConstants;
 import com.qinhan.videoblog.web.modelvo.UserModifyForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,6 +67,23 @@ public class UseServiceImpl implements UserService {
      */
     @Override
     public boolean checkUserInfo(String username, String password) {
+        User user = userRepo.findByUsernameAndPassword(username, password);
+        if (user != null) {
+            if(user.getState().equals("FROZEN")){
+                throw new RuntimeException("USERACCOUNT_FROZEN");
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 管理员登陆
+     * @param username
+     * @param password
+     * @return
+     */
+    public boolean checkSuperUserInfo(String username, String password) {
         User user = userRepo.findByUsernameAndPassword(username, password);
         if (user != null) {
             return true;
@@ -166,5 +187,35 @@ public class UseServiceImpl implements UserService {
             return null;
         }
 
+    }
+
+    /**
+     * 获取到所有用户信息
+     * @param page
+     * @param size
+     * @return
+     */
+    @Override
+        public Page<User> getAllUsers(Integer page, Integer size) {
+        Sort sort=new Sort(Sort.Direction.ASC,"userId");
+        Pageable pageable= PageRequest.of(page-1,size,sort);
+        Page<User> users=userRepo.findAll(pageable);
+        return users;
+    }
+
+    /**
+     * 通过id删除用户
+     * @param userId
+     */
+    @Override
+    public void deleteUserById(Integer userId) {
+        userRepo.deleteById(userId);
+    }
+
+    @Override
+    public void changeUserState(Integer userId, String state) {
+        User user=userRepo.findById(userId).get();
+        user.setState(state);
+        userRepo.save(user);
     }
 }

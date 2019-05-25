@@ -8,11 +8,10 @@
     <link href="./bootstrap-dist/css/bootstrap.css" rel="stylesheet" th:href="@{bootstrap-dist/css/bootstrap.css}"/>
 </head>
 <body>
-
 <div class="container">
-    <h5 th:text="${result}"> </h5><a th:href="@{/toIndex}">点击此处返回首页</a>
+    <!--注意这里应该考虑带条件搜索的功能-->
+    <h5 th:text="${ result }"> </h5><a th:href="@{/toVideoList}">点此回到审核界面</a>
 </div>
-
 <script src="./bootstrap-dist/js/jquery-3.1.0.js" th:src="@{js/jquery-3.1.0.js}"></script>
 <script src="./bootstrap-dist/js/bootstrap.js" th:src="@{bootstrap-dist/js/bootstrap.js}"></script>
 </body>

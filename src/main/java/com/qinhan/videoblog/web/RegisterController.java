@@ -19,7 +19,16 @@ public class RegisterController {
 	
 	@Autowired
     UserService userService;
-	
+
+    /**
+     * 跳转到注册页面
+     * @return
+     */
+    @RequestMapping("/toRegister")
+    public String toRegister(){
+        return "registration";
+    }
+
 	@RequestMapping("/register")
 	public String register(@Valid @ModelAttribute User user, Errors errors, ModelMap modelMap) {
 
